@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLOK IMPORTS — Links</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;500;700&family=Barlow:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #080808;
+    --orange: #ff5c1a;
+    --white: #f2f2ee;
+    --gray: #161616;
+    --mid: #222;
+    --light: #666;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    min-height: 100vh;
+    font-family: 'Barlow', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 48px 20px 80px;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* BG glow */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -150px; left: 50%;
+    transform: translateX(-50%);
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(255,92,26,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* grain */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    background-size: 180px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(30px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  /* ── AVATAR ── */
+  .avatar-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .avatar-ring {
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    background: conic-gradient(#ff5c1a 0deg, #ff9a1a 120deg, #cc3a00 240deg, #ff5c1a 360deg);
+    padding: 3px;
+    animation: spin 8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .avatar-inner {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    background: var(--gray);
+    border: 3px solid var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+  }
+
+  /* ── HEADER ── */
+  .brand-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    letter-spacing: 5px;
+    text-align: center;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+  .brand-name span { color: var(--orange); }
+
+  .brand-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--light);
+    text-align: center;
+    margin-bottom: 6px;
+  }
+
+  .location-tag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .location-tag::before { content: '📍'; font-size: 13px; }
+
+  /* ── DELIVERY BADGE ── */
+  .badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: rgba(46,204,113,0.08);
+    border: 1px solid rgba(46,204,113,0.25);
+    color: #2ecc71;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    border-radius: 4px;
+    margin-bottom: 32px;
+  }
+  .badge-dot {
+    width: 7px; height: 7px;
+    background: #2ecc71;
+    border-radius: 50%;
+    animation: blink 1.4s ease-in-out infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--light);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    padding-left: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, #2a2a2a, transparent);
+  }
+
+  /* ── LINK BUTTONS ── */
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .link-btn {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--mid);
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    padding: 16px 20px;
+    text-decoration: none;
+    color: var(--white);
+    transition: all 0.22s cubic-bezier(0.25,0.46,0.45,0.94);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .link-btn::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--orange);
+    border-radius: 10px 0 0 10px;
+    transform: scaleY(0);
+    transition: transform 0.22s ease;
+  }
+
+  .link-btn:hover {
+    background: #2a2a2a;
+    border-color: rgba(255,92,26,0.3);
+    transform: translateX(4px);
+  }
+  .link-btn:hover::before { transform: scaleY(1); }
+
+  .link-btn.primary {
+    background: var(--orange);
+    border-color: var(--orange);
+  }
+  .link-btn.primary::before { background: white; }
+  .link-btn.primary:hover {
+    background: #e04f12;
+    border-color: #e04f12;
+    transform: translateX(4px);
+  }
+
+  .link-icon {
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.07);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .link-btn.primary .link-icon {
+    background: rgba(255,255,255,0.2);
+  }
+
+  .link-text { flex: 1; }
+  .link-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+  .link-btn.primary .link-title { color: white; }
+  .link-desc {
+    font-size: 12px;
+    color: var(--light);
+    font-weight: 300;
+  }
+  .link-btn.primary .link-desc { color: rgba(255,255,255,0.7); }
+
+  .link-arrow {
+    font-size: 18px;
+    color: var(--light);
+    transition: transform 0.2s;
+  }
+  .link-btn:hover .link-arrow { transform: translateX(3px); color: var(--orange); }
+  .link-btn.primary .link-arrow { color: rgba(255,255,255,0.7); }
+  .link-btn.primary:hover .link-arrow { color: white; transform: translateX(3px); }
+
+  /* ── CATEGORIES ── */
+  .categories {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+  .cat-item {
+    background: var(--mid);
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 14px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    transition: border-color 0.2s;
+    cursor: default;
+  }
+  .cat-item:hover { border-color: rgba(255,92,26,0.3); }
+  .cat-emoji { font-size: 24px; }
+  .cat-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #888;
+    text-align: center;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding-top: 16px;
+    border-top: 1px solid #1a1a1a;
+  }
+  .footer-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 4px;
+    color: #2a2a2a;
+    margin-bottom: 4px;
+  }
+  .footer-brand span { color: #ff5c1a44; }
+  .footer-copy {
+    font-size: 11px;
+    color: #333;
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Avatar -->
+  <div class="avatar-wrap">
+    <div class="avatar-ring">
+      <div class="avatar-inner">👕</div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <div class="brand-name">BLOK <span>IMPORTS</span></div>
+  <div class="brand-sub">Camisas · Times · Bermudas</div>
+  <div class="location-tag">Manaus, AM</div>
+
+  <!-- Badge -->
+  <div class="badge">
+    <div class="badge-dot"></div>
+    Entrega ativa em Manaus
+  </div>
+
+  <!-- Links principais -->
+  <div class="section-label">Fale comigo</div>
+  <div class="links">
+
+    <a class="link-btn primary" href="https://wa.me/55SEUNUMERO" target="_blank">
+      <div class="link-icon">💬</div>
+      <div class="link-text">
+        <div class="link-title">Pedir pelo WhatsApp</div>
+        <div class="link-desc">Mais rápido — respondo na hora</div>
+      </div>
+      <div class="link-arrow">→</div>
+    </a>
+
+    <a class="link-btn" href="https://instagram.com/blok.imports" target="_blank">
+      <div class="link-icon">📸</div>
+      <div class="link-text">
+        <div class="link-title">Ver no Instagram</div>
+        <div class="link-desc">Catálogo completo no feed</div>
+      </div>
+      <div class="link-arrow">→</div>
+    </a>
+
+    <a class="link-btn" href="https://instagram.com/blok.imports" target="_blank">
+      <div class="link-icon">📦</div>
+      <div class="link-text">
+        <div class="link-title">Fazer pedido por DM</div>
+        <div class="link-desc">Direct no Instagram</div>
+      </div>
+      <div class="link-arrow">→</div>
+    </a>
+
+  </div>
+
+  <!-- Categorias -->
+  <div class="section-label">O que vendemos</div>
+  <div class="categories">
+    <div class="cat-item">
+      <div class="cat-emoji">⚽</div>
+      <div class="cat-name">Times BR</div>
+    </div>
+    <div class="cat-item">
+      <div class="cat-emoji">🌍</div>
+      <div class="cat-name">Importadas</div>
+    </div>
+    <div class="cat-item">
+      <div class="cat-emoji">🇧🇷</div>
+      <div class="cat-name">Seleção</div>
+    </div>
+    <div class="cat-item">
+      <div class="cat-emoji">👕</div>
+      <div class="cat-name">Casuais</div>
+    </div>
+    <div class="cat-item">
+      <div class="cat-emoji">🩳</div>
+      <div class="cat-name">Bermudas</div>
+    </div>
+    <div class="cat-item">
+      <div class="cat-emoji">🔥</div>
+      <div class="cat-name">Ofertas</div>
+    </div>
+  </div>
+
+  <!-- Info entrega -->
+  <div class="section-label">Como funciona</div>
+  <div class="links">
+    <div class="link-btn" style="cursor:default;">
+      <div class="link-icon">1️⃣</div>
+      <div class="link-text">
+        <div class="link-title">Escolha o produto</div>
+        <div class="link-desc">Veja no feed ou manda DM pedindo o catálogo</div>
+      </div>
+    </div>
+    <div class="link-btn" style="cursor:default;">
+      <div class="link-icon">2️⃣</div>
+      <div class="link-text">
+        <div class="link-title">Confirme pelo Pix</div>
+        <div class="link-desc">Pagamento 100% seguro antes da entrega</div>
+      </div>
+    </div>
+    <div class="link-btn" style="cursor:default;">
+      <div class="link-icon">3️⃣</div>
+      <div class="link-text">
+        <div class="link-title">Receba em casa</div>
+        <div class="link-desc">Entregamos na sua porta em Manaus</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-brand">BLOK <span>IMPORTS</span></div>
+    <div class="footer-copy">© 2026 · Manaus, AM · Todos os direitos reservados</div>
+  </div>
+
+</div>
+</body>
+</html>
