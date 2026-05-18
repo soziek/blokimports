@@ -14,9 +14,9 @@
     --mid: #222;
     --light: #666;
   }
-
+ 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
+ 
   body {
     background: var(--black);
     min-height: 100vh;
@@ -28,8 +28,7 @@
     position: relative;
     overflow-x: hidden;
   }
-
-  /* BG glow */
+ 
   body::before {
     content: '';
     position: fixed;
@@ -39,8 +38,7 @@
     background: radial-gradient(circle, rgba(255,92,26,0.12) 0%, transparent 70%);
     pointer-events: none;
   }
-
-  /* grain */
+ 
   body::after {
     content: '';
     position: fixed;
@@ -50,7 +48,7 @@
     pointer-events: none;
     z-index: 0;
   }
-
+ 
   .container {
     width: 100%;
     max-width: 480px;
@@ -58,13 +56,12 @@
     z-index: 1;
     animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) both;
   }
-
+ 
   @keyframes fadeUp {
     from { opacity:0; transform:translateY(30px); }
     to   { opacity:1; transform:translateY(0); }
   }
-
-  /* ── AVATAR ── */
+ 
   .avatar-wrap {
     display: flex;
     justify-content: center;
@@ -88,8 +85,7 @@
     justify-content: center;
     font-size: 36px;
   }
-
-  /* ── HEADER ── */
+ 
   .brand-name {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 42px;
@@ -100,7 +96,7 @@
     margin-bottom: 2px;
   }
   .brand-name span { color: var(--orange); }
-
+ 
   .brand-sub {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 12px;
@@ -110,7 +106,7 @@
     text-align: center;
     margin-bottom: 6px;
   }
-
+ 
   .location-tag {
     display: flex;
     align-items: center;
@@ -124,8 +120,7 @@
     margin-bottom: 28px;
   }
   .location-tag::before { content: '📍'; font-size: 13px; }
-
-  /* ── DELIVERY BADGE ── */
+ 
   .badge {
     display: flex;
     align-items: center;
@@ -150,8 +145,7 @@
     animation: blink 1.4s ease-in-out infinite;
   }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
-
-  /* ── SECTION LABEL ── */
+ 
   .section-label {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 11px;
@@ -170,15 +164,14 @@
     height: 1px;
     background: linear-gradient(90deg, #2a2a2a, transparent);
   }
-
-  /* ── LINK BUTTONS ── */
+ 
   .links {
     display: flex;
     flex-direction: column;
     gap: 12px;
     margin-bottom: 28px;
   }
-
+ 
   .link-btn {
     display: flex;
     align-items: center;
@@ -194,7 +187,7 @@
     overflow: hidden;
     cursor: pointer;
   }
-
+ 
   .link-btn::before {
     content: '';
     position: absolute;
@@ -205,14 +198,14 @@
     transform: scaleY(0);
     transition: transform 0.22s ease;
   }
-
+ 
   .link-btn:hover {
     background: #2a2a2a;
     border-color: rgba(255,92,26,0.3);
     transform: translateX(4px);
   }
   .link-btn:hover::before { transform: scaleY(1); }
-
+ 
   .link-btn.primary {
     background: var(--orange);
     border-color: var(--orange);
@@ -223,7 +216,7 @@
     border-color: #e04f12;
     transform: translateX(4px);
   }
-
+ 
   .link-icon {
     width: 40px; height: 40px;
     border-radius: 8px;
@@ -237,7 +230,7 @@
   .link-btn.primary .link-icon {
     background: rgba(255,255,255,0.2);
   }
-
+ 
   .link-text { flex: 1; }
   .link-title {
     font-family: 'Barlow Condensed', sans-serif;
@@ -256,7 +249,7 @@
     font-weight: 300;
   }
   .link-btn.primary .link-desc { color: rgba(255,255,255,0.7); }
-
+ 
   .link-arrow {
     font-size: 18px;
     color: var(--light);
@@ -265,8 +258,7 @@
   .link-btn:hover .link-arrow { transform: translateX(3px); color: var(--orange); }
   .link-btn.primary .link-arrow { color: rgba(255,255,255,0.7); }
   .link-btn.primary:hover .link-arrow { color: white; transform: translateX(3px); }
-
-  /* ── CATEGORIES ── */
+ 
   .categories {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -296,8 +288,7 @@
     color: #888;
     text-align: center;
   }
-
-  /* ── FOOTER ── */
+ 
   .footer {
     text-align: center;
     padding-top: 16px;
@@ -320,30 +311,26 @@
 </head>
 <body>
 <div class="container">
-
-  <!-- Avatar -->
+ 
   <div class="avatar-wrap">
     <div class="avatar-ring">
       <div class="avatar-inner">👕</div>
     </div>
   </div>
-
-  <!-- Header -->
+ 
   <div class="brand-name">BLOK <span>IMPORTS</span></div>
   <div class="brand-sub">Camisas · Times · Bermudas</div>
   <div class="location-tag">Manaus, AM</div>
-
-  <!-- Badge -->
+ 
   <div class="badge">
     <div class="badge-dot"></div>
     Entrega ativa em Manaus
   </div>
-
-  <!-- Links principais -->
+ 
   <div class="section-label">Fale comigo</div>
   <div class="links">
-
-    <a class="link-btn" href="https://instagram.com/blok.imports" target="_blank">
+ 
+    <a class="link-btn primary" href="https://instagram.com/blok.imports" target="_blank">
       <div class="link-icon">📸</div>
       <div class="link-text">
         <div class="link-title">Ver no Instagram</div>
@@ -351,7 +338,7 @@
       </div>
       <div class="link-arrow">→</div>
     </a>
-
+ 
     <a class="link-btn" href="https://instagram.com/blok.imports" target="_blank">
       <div class="link-icon">📦</div>
       <div class="link-text">
@@ -360,10 +347,9 @@
       </div>
       <div class="link-arrow">→</div>
     </a>
-
+ 
   </div>
-
-  <!-- Categorias -->
+ 
   <div class="section-label">O que vendemos</div>
   <div class="categories">
     <div class="cat-item">
@@ -391,8 +377,7 @@
       <div class="cat-name">Ofertas</div>
     </div>
   </div>
-
-  <!-- Info entrega -->
+ 
   <div class="section-label">Como funciona</div>
   <div class="links">
     <div class="link-btn" style="cursor:default;">
@@ -417,13 +402,12 @@
       </div>
     </div>
   </div>
-
-  <!-- Footer -->
+ 
   <div class="footer">
     <div class="footer-brand">BLOK <span>IMPORTS</span></div>
     <div class="footer-copy">© 2026 · Manaus, AM · Todos os direitos reservados</div>
   </div>
-
+ 
 </div>
 </body>
 </html>
